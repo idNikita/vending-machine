@@ -1,0 +1,21 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace VendingMachine.Models {
+
+    public class ApplicationDbContext : DbContext {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options) { }
+
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Coin> Coins { get; set; }
+    }
+
+    //public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext> {
+    //    public ApplicationDbContext CreateDbContext(string[] args) =>
+    //        Program.BuildWebHost(args).Services
+    //            .GetRequiredService<ApplicationDbContext>();
+    //}
+}

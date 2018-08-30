@@ -1,0 +1,95 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\README.md" />
+    <None Include="wwwroot\lib\jquery-validation\changelog.md" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_ar.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_az.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_bg.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_bn_BD.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_ca.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_cs.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_da.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_de.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_el.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_es.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_es_AR.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_es_PE.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_et.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_eu.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_fa.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_fi.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_fr.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_ge.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_gl.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_he.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_hr.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_hu.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_hy_AM.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_id.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_is.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_it.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_ja.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_ka.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_kk.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_ko.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_lt.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_lv.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_mk.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_my.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_nl.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_no.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_pl.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_pt_BR.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_pt_PT.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_ro.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_ru.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_sd.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_si.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_sk.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_sl.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_sr.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_sr_lat.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_sv.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_th.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_tj.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_tr.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_uk.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_ur.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_vi.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_zh.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_zh_TW.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\methods_de.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\methods_es_CL.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\methods_fi.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\methods_nl.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\localization\methods_pt.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery-validation\README.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Shared\EditCoin.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+  
+</Project>

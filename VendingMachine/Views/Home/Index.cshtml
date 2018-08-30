@@ -1,0 +1,86 @@
+﻿@model VendingMachineViewModel
+
+<div class="col-9">
+	<div class="row">
+		@foreach (Product p in Model.Products) {
+			<div class="col-md-3 col-sm-6 text-center p-1">
+				@Html.Partial("ProductSummary", p)
+				@if (p.Count == 0) {
+					<h6 class="text-danger">Товар закончился</h6>
+				}
+				else {
+					<small>В наличии: @p.Count </small>
+					<div class="p-1 m-1">
+						@if (Model.Balance.Count >= p.Price) {
+							<form asp-action="BuyProduct" method="post">
+								<input type="hidden" name="id" value="@p.ProductID" />
+								<button class="btn btn-block btn-success" type="submit">Купить</button>
+							</form>
+						}
+						else {
+							<a class="btn btn-block btn-danger btn-danger">Недостаточно средств</a>
+						}
+					</div>
+				}
+			</div>
+		}
+	</div>
+</div>
+<div class="col-3">
+	<h6>Баланс:</h6>
+	<h4 class="balance">@Model.Balance.Count.ToString("c")</h4>
+	<div class="row">
+		<div class="col-6">
+			<h6>Добавить монеты:</h6>
+			@foreach (var coin in Model.Coins) {
+				<form asp-action="AddCoin" method="post">
+					<div class="form-group">
+						<input type="hidden" name="Name" value="@coin.Name" />
+						@if (coin.IsAvailable) {
+							<button type="submit" class="btn btn-dark btn-sm">@coin.Name</button>
+						}
+						else {
+							<a href="#" class="btn btn-danger btn-sm">@coin.Name</a>
+						}
+					</div>
+				</form>
+			}			
+			@*<form asp-action="Clear" method="post">
+				<div class="form-group">
+					<button type="submit" class="btn btn-warning">Обнулить баланс</button>
+				</div>
+			</form>*@
+			<a class="btn btn-primary change">Сдача</a>
+			<div id="change">
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+<script>
+	$('.change').click(function () {
+		$.ajax({
+			method: "POST",
+			contentType: "application/json; charset=utf-8",
+			url: "Home/GiveChange",
+			dataType: "json",
+			headers: {
+				RequestVerificationToken:
+					$('input:hidden[name="__RequestVerificationToken"]').val()
+			},
+			success: function (response) {
+				$('#change').empty();
+				$('#change').append('<h4>Ваша сдача:</h4>');
+				$.each(response, function (key, val) {
+					$('#change').append('<p>' + key + ': ' + val + 'шт</p>');
+				});
+				$('.balance').html('0');
+			},
+			fail: function () {
+				alert('error');
+			}
+		});
+	});
+</script>
+}
