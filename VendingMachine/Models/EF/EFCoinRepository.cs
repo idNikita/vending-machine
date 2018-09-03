@@ -8,8 +8,12 @@ namespace VendingMachine.Models {
     public class EFCoinRepository : ICoinRepository {
 
         private ApplicationDbContext context;
+        private Balance userBalance;
 
-        public EFCoinRepository(ApplicationDbContext cxt) => context = cxt;
+        public EFCoinRepository(ApplicationDbContext cxt, Balance balanceService) {
+            context = cxt;
+            userBalance = balanceService;
+        }
 
         public IQueryable<Coin> Coins => context.Coins;
 
@@ -43,6 +47,14 @@ namespace VendingMachine.Models {
         }
 
         public decimal ComputeTotal() => context.Coins.Sum(c => c.Count * c.Nominal);
+        
+        public bool CanChange(decimal value) {
+            if (value > ComputeTotal()) {
+                return false;
+            }
+
+            return true;
+        }
 
         public Dictionary<string, int> ComputeChange(decimal value) {
             Dictionary<string, int> requiredCoins = new Dictionary<string, int> {
@@ -58,6 +70,7 @@ namespace VendingMachine.Models {
             Coin one = context.Coins.Where(c => c.Name == CoinName.One).FirstOrDefault();            
 
             if (value < ComputeTotal()) {
+                userBalance.Clear();
                 decimal sum = value;
 
                 while (sum > 0) {
@@ -80,6 +93,11 @@ namespace VendingMachine.Models {
                         sum -= one.Nominal;
                         one.Count -= 1;
                         requiredCoins["One"] += 1;                        
+                    }
+
+                    if (sum > 0) {
+                        userBalance.Add(sum);
+                        break;
                     }
                 }
                 context.SaveChanges();

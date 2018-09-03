@@ -1,0 +1,10 @@
+﻿<div class="alert alert-success">
+	<strong>@ViewData["Message"]</strong> 
+</div>
+<script>
+    $(document).ready(function () {
+        setTimeout(function() {
+            window.location.href = "@Url.Action("Index", "Admin", new { key = "secret" })";
+        }, 1000);
+    })
+</script>

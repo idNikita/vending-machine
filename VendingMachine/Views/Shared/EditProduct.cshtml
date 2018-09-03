@@ -2,10 +2,11 @@
 
 <div class="modal-content">
 	<div class="modal-header">
-		<h4>@ViewData["Title"]</h4>
+		<h4>Редактирование</h4>
 		<button class="close" data-dismiss="modal" area-hidden="true">X</button>
 	</div>
 	<div class="modal-body">
+		<div id="dialog-content"></div>
 		<form asp-action="EditProduct" method="post">
 			<input type="hidden" asp-for="ProductID" />
 			<div class="form-group">
@@ -28,37 +29,24 @@
 				<label asp-for="Count"></label>
 				<input asp-for="Count" class="form-control" />
 			</div>
-			<div class="text-center">
-				<button class="btn btn-primary" type="submit">Сохранить</button>
-				<a asp-action="Index" class="btn btn-secondary">Отмена</a>
+			<div class="text-right">
+				<button class="btn btn-primary saveProduct">Сохранить</button>
+				<button class="btn btn-secondary" data-dismiss="modal">Отмена</button>
 			</div>
 		</form>
 	</div>
 </div>
-@section Scripts {
-	<script>
-	$('.change').click(function () {
+<script>
+	$.ajaxSetup({ cache: false });
+	$('.saveProduct').click(function (e) {
+		e.preventDefault();
 		$.ajax({
-			method: "POST",
-			contentType: "application/json; charset=utf-8",
-			url: "Home/GiveChange",
-			dataType: "json",
-			headers: {
-				RequestVerificationToken:
-					$('input:hidden[name="__RequestVerificationToken"]').val()
-			},
-			success: function (response) {
-				$('#change').empty();
-				$('#change').append('<h4>Ваша сдача:</h4>');
-				$.each(response, function (key, val) {
-					$('#change').append('<p>' + key + ': ' + val + 'шт</p>');
-				});
-				$('.balance').html('0');
-			},
-			fail: function () {
-				alert('error');
+			url: '@Url.Action("EditProduct","Admin")',
+			method: 'POST',
+			data: $('form').serialize(),
+			success: function (result) {
+				$('#dialogContent').html(result);				
 			}
 		});
 	});
-	</script>
-}
+</script>

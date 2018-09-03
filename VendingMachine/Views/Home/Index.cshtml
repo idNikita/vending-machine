@@ -1,5 +1,7 @@
 ﻿@model VendingMachineViewModel
-
+@*<div class="col-12">
+	<a asp-action="Index" asp-controller="Admin" asp-route-key="secret"> Админка >></a>
+</div>*@
 <div class="col-9">
 	<div class="row">
 		@foreach (Product p in Model.Products) {
@@ -44,12 +46,7 @@
 						}
 					</div>
 				</form>
-			}			
-			@*<form asp-action="Clear" method="post">
-				<div class="form-group">
-					<button type="submit" class="btn btn-warning">Обнулить баланс</button>
-				</div>
-			</form>*@
+			}
 			<a class="btn btn-primary change">Сдача</a>
 			<div id="change">
 			</div>
@@ -64,7 +61,6 @@
 			method: "POST",
 			contentType: "application/json; charset=utf-8",
 			url: "Home/GiveChange",
-			dataType: "json",
 			headers: {
 				RequestVerificationToken:
 					$('input:hidden[name="__RequestVerificationToken"]').val()
@@ -72,13 +68,13 @@
 			success: function (response) {
 				$('#change').empty();
 				$('#change').append('<h4>Ваша сдача:</h4>');
-				$.each(response, function (key, val) {
+				$.each(response.coins, function (key, val) {
 					$('#change').append('<p>' + key + ': ' + val + 'шт</p>');
-				});
-				$('.balance').html('0');
-			},
-			fail: function () {
-				alert('error');
+				});	
+				$('.balance').html(response.balance);
+			},			
+			error: function (response) {
+				alert('error: ' + response.responseText);
 			}
 		});
 	});

@@ -30,7 +30,6 @@ namespace VendingMachine.Controllers
         public IActionResult EditCoin(int id) {
             Coin coin = coinRepository.Coins.Where(c => c.CoinID == id).FirstOrDefault();
             if (coin != null) {
-                ViewData["Title"] = "Редактирование";
                 return PartialView(coin);
             }
             return RedirectToAction(nameof(Index), new { key = "secret" });
@@ -40,7 +39,6 @@ namespace VendingMachine.Controllers
         public IActionResult EditCoin(Coin coin) {
             if (ModelState.IsValid) {
                 coinRepository.SaveCoin(coin);
-                TempData["message"] = $"{coin.Name} сохранен";
                 return RedirectToAction(nameof(Index), new { key = "secret" });
             }
             else {
@@ -50,8 +48,7 @@ namespace VendingMachine.Controllers
 
         public IActionResult EditProduct(int id) {
             Product product = productRepository.Products.Where(p => p.ProductID == id).FirstOrDefault();
-            if (product != null) {
-                ViewData["Title"] = "Редактирование";
+            if (product != null) {                
                 return PartialView(product);
             }
             return RedirectToAction(nameof(Index), new { key = "secret" });
@@ -61,12 +58,10 @@ namespace VendingMachine.Controllers
         public IActionResult EditProduct(Product product) {
             if (ModelState.IsValid) {
                 productRepository.SaveProduct(product);
-                TempData["message"] = $"{product.Name} сохранен";
-                return RedirectToAction(nameof(Index), new { key = "secret" });
+                ViewData["Message"] = "Отредактировано";
+                return PartialView("Success");
             }
-            else {
-                return View(product);
-            }
+            return PartialView(product);     
         }
 
         [HttpPost]
@@ -78,9 +73,6 @@ namespace VendingMachine.Controllers
             return RedirectToAction(nameof(Index), new { key = "secret" });
         }
 
-        public IActionResult CreateProduct() {
-            ViewData["Title"] = "Новый";
-            return PartialView("EditProduct", new Product());
-        }
+        public IActionResult CreateProduct() => PartialView("EditProduct", new Product());
     }
 }

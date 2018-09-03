@@ -1,5 +1,8 @@
 ﻿@model AdminViewModel
 
+@*<div class="col-12">
+	<a asp-action="Index" asp-controller="Home"><< На главную</a>
+</div>*@
 <div class="col-md-6 col-sm-12">
 	<h2>Список напитков</h2>
 	<table class="table table-sm table-bordered text-center">
@@ -27,14 +30,14 @@
 			}
 		</tbody>
 	</table>
-	<a class="btn btn-dark btn-secondary editProduct" asp-action="CreateProduct">Добавить</a>	
+	<a class="btn btn-dark btn-secondary editProduct" asp-action="CreateProduct">Добавить</a>
 </div>
 
 <div class="col-md-6 col-sm-12">
 	<h2>Список монет</h2>
 	<table class="table table-sm table-bordered text-center">
 		<thead>
-			<tr><th>ID</th><th>Название</th><th>Номинал</th><th>Количество</th><th>Сдача</th><th>Действия</th></tr>
+			<tr><th>ID</th><th>Название</th><th>Номинал</th><th>Количество</th><th>Принимать</th><th>Действия</th></tr>
 		</thead>
 		<tbody>
 			@foreach (var c in Model.Coins) {
@@ -44,12 +47,7 @@
 					<td>@c.Nominal</td>
 					<td>@c.Count</td>
 					<td>@Html.CheckBoxFor(m => c.IsAvailable, new { @id = c.CoinID })</td>
-					<td>
-						<form asp-action="EditCoin" method="post">
-							<input type="hidden" name="id" value="@c.CoinID" />
-							<a class="btn btn-dark btn-sm editProduct" asp-action="EditCoin" asp-route-id="@c.CoinID">Изменить</a>
-							<button class="btn btn-danger btn-sm" type="submit">Изменить</button>
-						</form>
+					<td><a class="btn btn-dark btn-sm editProduct" asp-action="EditCoin" asp-route-id="@c.CoinID">Изменить</a>
 					</td>
 				</tr>
 			}
@@ -62,11 +60,10 @@
 </div>
 
 @section Scripts {
-	<script type="text/javascript">
+	<script>
 		$(function () {
 			$.ajaxSetup({ cache: false });
 			$(".editProduct").click(function (e) {
-
 				e.preventDefault();
 				$.get(this.href, function (data) {
 					$('#dialogContent').html(data);
